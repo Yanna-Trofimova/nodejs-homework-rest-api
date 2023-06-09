@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 const contactsController = require('../../controllers/contacts-controller.js');
-// const { isValidId } = require("../../middelwares");
 const validateBody = require('../../decorators/validateBody.js');
 
 const schemas = require("../../schemas/contacts.js");
@@ -27,30 +26,3 @@ router.patch('/:contactId/favorite',  validateBody(schemas.contactUpdateFavorite
 module.exports = router; 
 
 
-
-// router.get("/:id", isValidId, contactsController.getContactById);
-
-// router.post(
-//   "/",
-//   validateBody(schemas.contactAddSchema),
-//   contactsController.addContact
-// );
-
-// router.put(
-//   "/:id",
-//   isValidId,
-//   validateBody(schemas.contactUpdateSchema),
-//   validateBody(schemas.contactAddSchema),
-//   contactsController.updateContactById
-// );
-
-// router.patch(
-//   "/:id/favorite",
-//   isValidId,
-//   validateBody(schemas.contactUpdateFavoriteSchema),
-//   contactsController.updateStatusContact
-// );
-
-// router.delete("/:id", isValidId, contactsController.removeContact);
-
-// module.exports = router;
