@@ -11,7 +11,7 @@ const schemas = require("../../schemas/contacts.js");
 
 router.get('/', contactsController.getAllContacts);
 
-router.get('/:contactId', contactsController.getContactById);
+router.get('/:contactId',  contactsController.getContactById);
 
 router.post('/', validateBody(schemas.contactAddSheme), contactsController.addContact);
 
