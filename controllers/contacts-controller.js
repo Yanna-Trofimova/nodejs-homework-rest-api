@@ -3,7 +3,16 @@ const Contact = require("../models/contacts");
 const { HttpError } = require('../helpers');
 
 const {ctrlWrapper} = require("../decorators")
+const  isValidId   = require("../middelwares");
 
+// const { isValidObjectId } = require("mongoose");
+
+// const isValidId = (req ) => {
+//     const { contactId } = req.params;
+//     if (!isValidObjectId(contactId)) {
+//         throw HttpError(400, `Not valid ID: ${contactId}`);
+//     }
+// };
 
 
 
@@ -14,18 +23,31 @@ const getAllContacts = async (req, res, ) => {
   
 }
 
-const getContactById = async (req, res) => {
+// const getContactById = async (req, res) => {
 
+//     const { contactId } = req.params;
+//     const result = await Contact.findById(contactId);
+//     if (!result) {
+//       throw HttpError(404, `Contacts with ${contactId} not found`);
+//     }
+//     res.json(result)
+
+// }
+
+
+const getContactById = async (req, res) => {
     const { contactId } = req.params;
+    // if (!isValidObjectId(contactId)) {
+    //     throw HttpError(400, `Not valid ID: ${contactId}`);
+    // }
+  isValidId(contactId);
+  
     const result = await Contact.findById(contactId);
     if (!result) {
-      throw HttpError(404, `Contacts with ${contactId} not found`);
+        throw HttpError(404, `Contacts with ${contactId} not found`);
     }
-    res.json(result)
-
-}
-
-
+    res.json(result);
+};
 
 const addContact = async (req, res) => {
    
