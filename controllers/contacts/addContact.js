@@ -1,6 +1,6 @@
-const Contact = require("../models/contacts");
+const Contact = require("../../models/contacts");
 
-const {ctrlWrapper} = require("../decorators")
+const {ctrlWrapper} = require("../../decorators")
 
 
 const addContact = async (req, res) => {

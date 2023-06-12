@@ -1,9 +1,9 @@
-const Contact = require("../models/contacts");
+const Contact = require("../../models/contacts");
 
-const { HttpError } = require('../helpers');
+const { HttpError } = require('../../helpers');
 
-const {ctrlWrapper} = require("../decorators")
-const  isValidId   = require("../middelwares/isValidId");
+const {ctrlWrapper} = require("../../decorators")
+const  isValidId   = require("../../middelwares/isValidId");
 
 const deleteContact = async (req, res) => {
   
