@@ -10,7 +10,11 @@ const contactAddSheme = Joi.object({
   phone: Joi.string().required().messages({
     'any.required': `"phone" is a required field`
   }),
-  favorite: Joi.boolean()
+  favorite: Joi.boolean(),
+  // owner: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'user',
+  //   }
 })
 
 const contactUpdateSchema = Joi.object({
