@@ -1,9 +1,11 @@
 
-const handelMongooseError = require("./handelMongooseError");
+// const handelMongooseError = require("../helpers/handelMongooseError");
 const isValiId = require("./isValidId");
+const auteticate = require("./auteticate");
 
 module.exports = {
-    handelMongooseError,
+    // handelMongooseError,
     isValiId,
+    auteticate
 }
 
