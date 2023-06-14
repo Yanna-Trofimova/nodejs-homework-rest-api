@@ -11,20 +11,22 @@ const validateBody = require('../../decorators/validateBody.js');
 
 const schemas = require("../../schemas/contacts.js");
 
+const { auteticate } = require("../../middelwares");
+
+// router.use(auteticate);
+
+router.get('/', auteticate , getAllContacts);
+
+router.get('/:contactId', auteticate, getContactById);
+
+router.post('/', validateBody(schemas.contactAddSheme),auteticate, addContact);
+
+router.delete('/:contactId', auteticate , deleteContact)
+
+router.put('/:contactId',  validateBody(schemas.contactUpdateSchema), validateBody(schemas.contactAddSheme), auteticate, updateContact);
 
 
-router.get('/', getAllContacts);
-
-router.get('/:contactId',  getContactById);
-
-router.post('/', validateBody(schemas.contactAddSheme), addContact);
-
-router.delete('/:contactId', deleteContact)
-
-router.put('/:contactId',  validateBody(schemas.contactUpdateSchema), validateBody(schemas.contactAddSheme), updateContact);
-
-
-router.patch('/:contactId/favorite',  validateBody(schemas.contactUpdateFavoriteShema), updateFavorite);
+router.patch('/:contactId/favorite',  validateBody(schemas.contactUpdateFavoriteShema), auteticate,  updateFavorite);
 
  
 

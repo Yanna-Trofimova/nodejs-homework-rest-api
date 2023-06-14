@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const { handelMongooseError } = require("../middelwares");
+const { handelMongooseError } = require("../helpers");
 
 const contactSchema = new Schema(
   {
@@ -18,6 +18,10 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    }
   },
   { versionKey: false, timestamps: true }
 );

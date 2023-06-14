@@ -1,14 +1,31 @@
 const express = require('express');
 const schemas = require('../../schemas/users');
 const validateBody = require('../../decorators/validateBody.js');
+// const jwt = require("jsonwebtoken");
 
-const { singup } = require('../../controllers/auth/singup');
-const { singin } = require('../../controllers/auth/singin');
+const { register } = require('../../controllers/auth/register');
+const { login } = require('../../controllers/auth/login');
+const { getCurrent } = require('../../controllers/auth/getCurrent');
+const { logout } = require('../../controllers/auth/logout');
+const { updateStatusUser } = require('../../controllers/auth/updateStatusUser');
+
 
 const router = express.Router();
 
-router.post('/singup', validateBody(schemas.userAddSheme), singup);
+const { auteticate } = require("../../middelwares");
 
-router.post('/singin', validateBody(schemas.userLoginSheme), singin);
+router.post('/register', validateBody(schemas.registerSchema), register);
+
+router.post('/login', validateBody(schemas.loginSchema), login);
+
+router.get("/current", auteticate, getCurrent);
+
+router.get("/logout", auteticate, logout);
+
+router.patch( "/", validateBody(schemas.updateStatusSchema), auteticate, updateStatusUser );
+
 
 module.exports = router;  
+
+
+

@@ -1,34 +1,38 @@
 const { Schema, model } = require("mongoose");
 
-const { handelMongooseError } = require("../middelwares");
+// const { handleMongooseError } = require("../helpers");
+const { handelMongooseError } = require("../helpers");
 
-const { emailRegexp } = require("../constans/users");
+// const Joi = require("joi");
 
-const userSchema = new Schema({
-
+const userSchema = new Schema(
+  {
     password: {
-    type: String,
-    required: [true, 'Set password for user'],
+      type: String,
+      required: [true, "Password is required"],
+    },
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+    },
+    subscription: {
+      type: String,
+      enum: ["starter", "pro", "business"],
+      default: "starter",
+    },
+    token: {
+      type: String,
+      default: null,
+    },
   },
-  email: {
-  type: String,
-    match: emailRegexp,
-    required: [true, 'Email is required'],
-    unique: true,
-  },
-  subscription: {
-    type: String,
-    enum: ["starter", "pro", "business"],
-    default: "starter"
-  },
-  token: String
-
-}, {versionKey:false, timestamps:true})
-
+  { versionKey: false, timestamps: true }
+);
 
 userSchema.post("save", handelMongooseError);
 
 
-const User = model('user', userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
+
