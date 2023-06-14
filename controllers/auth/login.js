@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const {HttpError} = require("../../helpers");
 const {ctrlWrapper} = require("../../decorators");
 
-// require("dotenv").config();
+require("dotenv").config();
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {

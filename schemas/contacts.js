@@ -1,4 +1,5 @@
 const Joi = require('joi'); 
+const { Schema } = require("mongoose");
 
 const contactAddSheme = Joi.object({
   name: Joi.string().required().messages({
@@ -11,10 +12,10 @@ const contactAddSheme = Joi.object({
     'any.required': `"phone" is a required field`
   }),
   favorite: Joi.boolean(),
-  // owner: {
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'user',
-  //   }
+  owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    }
 })
 
 const contactUpdateSchema = Joi.object({
