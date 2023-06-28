@@ -4,7 +4,8 @@ const {ctrlWrapper} = require("../../decorators")
 
 
 const addContact = async (req, res) => {
-  // console.log(req.user);
+  // console.log(req.body);
+  // console.log(req.file);
   const { _id: owner } = req.user;
   const result = await Contact.create({ ...req.body, owner });
     res.status(201).json(result);

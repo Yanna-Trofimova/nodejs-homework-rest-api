@@ -11,10 +11,13 @@ const auteticate = async (req, res, next) => {
     if (bearer !== "Bearer") {
         next(HttpError(401));
     }
+    if (!token) {
+    next(HttpError(401));
+  }
     try {
         const { id } = jwt.verify(token, SECRET_KEY);
         const user = await User.findById(id);
-        if (!user) {
+        if (!user ) {
              next(HttpError(401));
         }
         req.user = user;
@@ -26,6 +29,7 @@ const auteticate = async (req, res, next) => {
     
    
 }
+
 
 module.exports = auteticate;
 
