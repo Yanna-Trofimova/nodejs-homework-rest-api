@@ -9,6 +9,8 @@ const { getCurrent } = require('../../controllers/auth/getCurrent');
 const { logout } = require('../../controllers/auth/logout');
 const { updateStatusUser } = require('../../controllers/auth/updateStatusUser');
 const { UpdateAvatarURL } = require('../../controllers/auth/UpdateAvatarURL');
+const { verify } = require("../../controllers/auth");
+const {resendVerify} = require("../../controllers/auth")
 
 const router = express.Router();
 
@@ -21,6 +23,10 @@ router.post('/login', validateBody(schemas.loginSchema), login);
 router.get("/current", auteticate, getCurrent);
 
 router.get("/logout", auteticate, logout);
+
+router.get("/verify/:verifycationCode", verify);
+
+router.post("/verify", validateBody(schemas.userEmailSchema), resendVerify);
 
 router.patch("/", validateBody(schemas.updateStatusSchema), auteticate, updateStatusUser);
 

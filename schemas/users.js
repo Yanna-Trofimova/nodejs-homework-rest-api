@@ -15,10 +15,15 @@ const updateStatusSchema = Joi.object({
 });
 
 
+const userEmailSchema = Joi.object({
+    email: Joi.string().required(),
+});
+
 module.exports = {
     registerSchema,
     loginSchema,
-    updateStatusSchema
+    updateStatusSchema,
+    userEmailSchema
 }
 
 
